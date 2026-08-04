@@ -34,7 +34,7 @@ The random forest performs slightly better, consistent with the curved shape of 
 
 ![Capacity fade](figures/Capacity_Fade_vs_Cycle_Number.png)
 
-![Predicted vs actual](figures/predicted_vs_actual.png)
+![Predicted vs actual](figures/Battery_fade_Predicted_vs_Actual.png)
 
 ## Key findings
 
