@@ -1,0 +1,1 @@
+print(X_train.shape, X_test.shape)

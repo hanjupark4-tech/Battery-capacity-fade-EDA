@@ -7,7 +7,15 @@ import matplotlib.pyplot as plt
 
 BASE = Path(__file__).resolve().parent   
 path = BASE / "OxfordBatteryData.mat"
-     
+FIGURES = Path(__file__).resolve().parent.parent / "figures"
+
+plt.style.use('seaborn-v0_8-whitegrid')
+plt.rcParams['font.family'] = 'Helvetica'   
+plt.rcParams['axes.titlesize'] = 14
+plt.rcParams['axes.titleweight'] = 'bold'
+plt.rcParams['axes.labelsize'] = 12
+plt.rcParams['axes.edgecolor'] = '#cccccc'  
+plt.rcParams['legend.frameon'] = False     
 
 def load_fade_data(path):
     raw = sp.loadmat(path, squeeze_me=True, struct_as_record=False)
@@ -40,12 +48,14 @@ def clean_data(capa_df):
     return capa_df_clean
 
 def plot_data(capa_df_clean):
+    plt.figure(figsize=(9, 6))
     sns.lineplot(data=capa_df_clean, x='Cycle', y='SOH', hue='Cell')
     plt.xlabel('Cycle Number')
     plt.ylabel('State of Health (SOH)')
     plt.title('Capacity Fade vs Cycle Number')
+    plt.tight_layout()
+    plt.savefig(FIGURES / "Capacity_Fade_vs_Cycle_Number.png", dpi=150)
     plt.show()
-
 
 if __name__ == "__main__":
     plot_data(clean_data(load_fade_data(path)))
